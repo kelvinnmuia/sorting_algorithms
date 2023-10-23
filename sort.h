@@ -37,4 +37,8 @@ void insertion_sort_list(listint_t **list);
 /*--selection sort function for sorting integer array--*/
 void selection_sort(int *array, size_t size);
 
+/*--function for sorting integer array with quick sort--*/
+void quick_sort(int *array, size_t size);
+void quick_sorting(int *array, size_t size, int *full_array, size_t full_size);
+
 #endif
