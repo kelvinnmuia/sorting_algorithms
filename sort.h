@@ -34,4 +34,7 @@ void print_list(const listint_t *list);
 /*--function to sort an integer doubly linked list with insertion sort--*/
 void insertion_sort_list(listint_t **list);
 
+/*--selection sort function for sorting integer array--*/
+void selection_sort(int *array, size_t size);
+
 #endif
