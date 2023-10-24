@@ -5,15 +5,22 @@ unsigned int knuth_reset(unsigned int previous);
 void sorting_back(int **array, int i, int gap);
 
 /**
- * shell_sort - function for sorting an integer array using shell sort
- * @array: The given array to sort
- * @size: size of the array to be sorted
+ * shell_sort - sorts an array of integers using shell sort
+ * array is sorted in ascending order
+ * shell sort gap is determined by Knuth sequence
+ * @array: given array to sort
+ * @size: size of array to sort
+ *
  */
 
 void shell_sort(int *array, size_t size)
 {
-	int holdr = 0;
-	unsigned int gap = 0, i = 0;
+/* shell sort: */
+/* checks two values separated by gap, swapping if needed */
+/* swapping occurs at next gap size until gap size impossible or found spot */
+
+	unsigned int i = 0, gap = 0;
+	int holder = 0;
 
 	gap = knuth_set(size);
 	while (gap)
@@ -24,9 +31,9 @@ void shell_sort(int *array, size_t size)
 			{
 				if (array[i] > array[i + gap])
 				{
-					holdr = array[i];
+					holder = array[i];
 					array[i] = array[i + gap];
-					array[i +  gap] = holdr;
+					array[i + gap] = holder;
 					sorting_back(&array, (int)i, gap);
 				}
 			}
@@ -37,10 +44,10 @@ void shell_sort(int *array, size_t size)
 }
 
 /**
- * knuth_set - determines the gap based on knuth sequence
+ * knuth_set- determines gap based on Knuth sequence
  * @size: size of array to sort
  *
- * Return: returns the largest gap size possible
+ * Return: largest gap size possible
  */
 
 unsigned int knuth_set(size_t size)
@@ -64,7 +71,7 @@ unsigned int knuth_set(size_t size)
 }
 
 /**
- * knuth_reset - determines gap based on knuth sequence
+ * knuth_reset- determines gap based on Knuth sequence
  * @previous: previous gap
  *
  * Return: next gap size possible
@@ -72,8 +79,8 @@ unsigned int knuth_set(size_t size)
 
 unsigned int knuth_reset(unsigned int previous)
 {
-	unsigned int gap = 0;
 	int n = 0, m = 1;
+	unsigned int gap = 0;
 
 	if (previous == 1)
 		return (0);
@@ -89,24 +96,25 @@ unsigned int knuth_reset(unsigned int previous)
 }
 
 /**
- * sorting_back - sorts the gap back until beginning of array
- * @array: the array to sort
- * @i: the current index
+ * sorting_back - sorts by gap back until beginning of array
+ * @array: array to sort
+ * @i: current index
  * @gap: current gap size
+ *
  */
 
 void sorting_back(int **array, int i, int gap)
 {
-	int holdr = 0, j = 0;
+	int j = 0, holder = 0;
 
 	j = i - gap;
 	while (j > 0)
 	{
 		if ((*array)[i] < (*array)[j])
 		{
-			holdr = (*array)[i];
+			holder = (*array)[i];
 			(*array)[i] = (*array)[j];
-			(*array)[j] = holdr;
+			(*array)[j] = holder;
 		}
 		else
 			break;
