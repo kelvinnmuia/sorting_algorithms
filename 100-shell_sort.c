@@ -5,9 +5,7 @@ unsigned int knuth_reset(unsigned int previous);
 void sorting_back(int **array, int i, int gap);
 
 /**
- * shell_sort - sorts an array of integers using shell sort
- * array is sorted in ascending order
- * shell sort gap is determined by Knuth sequence
+ * shell_sort - sorts an integer array using shell sort
  * @array: given array to sort
  * @size: size of array to sort
  *
@@ -15,12 +13,9 @@ void sorting_back(int **array, int i, int gap);
 
 void shell_sort(int *array, size_t size)
 {
-/* shell sort: */
-/* checks two values separated by gap, swapping if needed */
-/* swapping occurs at next gap size until gap size impossible or found spot */
 
+	int holdr = 0;
 	unsigned int i = 0, gap = 0;
-	int holder = 0;
 
 	gap = knuth_set(size);
 	while (gap)
@@ -31,9 +26,9 @@ void shell_sort(int *array, size_t size)
 			{
 				if (array[i] > array[i + gap])
 				{
-					holder = array[i];
+					holdr = array[i];
 					array[i] = array[i + gap];
-					array[i + gap] = holder;
+					array[i + gap] = holdr;
 					sorting_back(&array, (int)i, gap);
 				}
 			}
@@ -52,8 +47,8 @@ void shell_sort(int *array, size_t size)
 
 unsigned int knuth_set(size_t size)
 {
-	int n = 0, m = 1;
 	unsigned int gap = 0;
+	int n = 0, m = 1;
 
 	if (size == 0)
 		return (0);
@@ -105,16 +100,16 @@ unsigned int knuth_reset(unsigned int previous)
 
 void sorting_back(int **array, int i, int gap)
 {
-	int j = 0, holder = 0;
+	int j = 0, holdr = 0;
 
 	j = i - gap;
 	while (j > 0)
 	{
 		if ((*array)[i] < (*array)[j])
 		{
-			holder = (*array)[i];
+			holdr = (*array)[i];
 			(*array)[i] = (*array)[j];
-			(*array)[j] = holder;
+			(*array)[j] = holdr;
 		}
 		else
 			break;
