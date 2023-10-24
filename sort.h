@@ -41,4 +41,7 @@ void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void quick_sorting(int *array, size_t size, int *full_array, size_t full_size);
 
+/*--function for sorting an integer array with the shell sort--*/
+void shell_sort(int *array, size_t size);
+
 #endif
