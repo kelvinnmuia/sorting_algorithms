@@ -56,4 +56,7 @@ void merge_sort(int *array, size_t size);
 /*--function for sorting an integer array with heap sort--*/
 void heap_sort(int *array, size_t size);
 
+/*--function for sorting an integer array with quick sort--*/
+void quick_sort_hoare(int *array, size_t size);
+
 #endif
