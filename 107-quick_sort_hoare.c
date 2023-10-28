@@ -7,7 +7,7 @@ void quick_sort_hoare(int *array, size_t size);
 
 /**
  * hoare_sort - implementing the quicksort algorithm through recursion
- * @array: The integer array to be sorted 
+ * @array: The integer array to be sorted
  * @size: The size of the array
  * @left: The starting index of the array partition to order
  * @right: The ending index of the array partition to order
