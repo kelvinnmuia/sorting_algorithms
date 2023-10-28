@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void swapping(listint_t **list, listint_t **mover, listint_t **partner);
+void swapping(listint_t **list, listint_t **shifter, listint_t **partner);
 
 /**
  * cocktail_sort_list - function for sorting an integer
@@ -11,61 +11,61 @@ void swapping(listint_t **list, listint_t **mover, listint_t **partner);
 void cocktail_sort_list(listint_t **list)
 {
 	int size = 0, count = 0;
-	listint_t *partner = NULL, *mover = NULL, *start = NULL, *end = NULL;
+	listint_t *partner = NULL, *shifter = NULL, *begin = NULL, *end = NULL;
 
 	if (list == NULL)
 		return;
 	if ((*list) == NULL)
 		return;
-	mover = (*list);
-	start = mover;
-	while (mover)
+	shifter = (*list);
+	begin = shifter;
+	while (shifter)
 	{
 		size++;
-		mover = mover->next;
+		shifter = shifter->next;
 	}
-	mover = start;
+	shifter = begin;
 	while (1)
 	{
-		while (mover && mover->next != end)
+		while (shifter && shifter->next != end)
 		{
-			if (mover == start)
+			if (shifter == begin)
 			{
-				mover = mover->next;
+				shifter = shifter->next;
 				continue;
 			}
-			partner = mover->prev;
-			if (partner->n > mover->n)
+			partner = shifter->prev;
+			if (partner->n > shifter->n)
 			{
-				swapping(list, &mover, &partner);
-				mover = mover->next->next;
+				swapping(list, &shifter, &partner);
+				shifter = shifter->next->next;
 			}
 			else
-				mover = mover->next;
+				shifter = shifter->next;
 		}
-		while (mover->prev != NULL)
-			mover = mover->prev;
-		start = mover;
-		while (mover->next != NULL)
-			mover = mover->next;
-		end = mover;
-		while (mover)
+		while (shifter->prev != NULL)
+			shifter = shifter->prev;
+		begin = shifter;
+		while (shifter->next != NULL)
+			shifter = shifter->next;
+		end = shifter;
+		while (shifter)
 		{
-			if (mover->prev == NULL)
+			if (shifter->prev == NULL)
 				break;
-			partner = mover->prev;
-			if (partner->n > mover->n)
-				swapping(list, &mover, &partner);
+			partner = shifter->prev;
+			if (partner->n > shifter->n)
+				swapping(list, &shifter, &partner);
 			else
-				mover = mover->prev;
+				shifter = shifter->prev;
 		}
-		mover = end;
-		while (mover->next != NULL)
-			mover = mover->next;
-		end = mover;
-		while (mover->prev != NULL)
-			mover = mover->prev;
-		start = mover;
+		shifter = end;
+		while (shifter->next != NULL)
+			shifter = shifter->next;
+		end = shifter;
+		while (shifter->prev != NULL)
+			shifter = shifter->prev;
+		begin = shifter;
 		count++;
 		if (count >= size / 2)
 			break;
@@ -76,22 +76,22 @@ void cocktail_sort_list(listint_t **list)
 /**
  * swapping - swaps two nodes in doubly linked list
  * @list: pointer to head of full list
- * @mover: pointer to mover node to switch with partner
- * @partner: pointer to partner node to switch with mover
+ * @shifter: pointer to shifter node to switch with partner
+ * @partner: pointer to partner node to switch with shifter
  *
  */
 
-void swapping(listint_t **list, listint_t **mover, listint_t **partner)
+void swapping(listint_t **list, listint_t **shifter, listint_t **partner)
 {
-	(*partner)->next = (*mover)->next;
-	(*mover)->prev = (*partner)->prev;
-	if ((*mover)->next)
-		(*mover)->next->prev = (*partner);
+	(*partner)->next = (*shifter)->next;
+	(*shifter)->prev = (*partner)->prev;
+	if ((*shifter)->next)
+		(*shifter)->next->prev = (*partner);
 	if ((*partner)->prev)
-		(*partner)->prev->next = (*mover);
+		(*partner)->prev->next = (*shifter);
 	else
-		(*list) = (*mover);
-	(*mover)->next = (*partner);
-	(*partner)->prev = (*mover);
+		(*list) = (*shifter);
+	(*shifter)->next = (*partner);
+	(*partner)->prev = (*shifter);
 	print_list(*list);
 }
