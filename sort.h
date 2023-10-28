@@ -50,4 +50,7 @@ void cocktail_sort_list(listint_t **list);
 /*--function for sorting an integer array with counting sort--*/
 void counting_sort(int *array, size_t size);
 
+/*--function for sorting an integer array with merge sort--*/
+void merge_sort(int *array, size_t size);
+
 #endif
