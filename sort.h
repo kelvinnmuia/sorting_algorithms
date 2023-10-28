@@ -44,4 +44,7 @@ void quick_sorting(int *array, size_t size, int *full_array, size_t full_size);
 /*--function for sorting an integer array with the shell sort--*/
 void shell_sort(int *array, size_t size);
 
+/*--function for sorting an integer doubly linked lists with cocktail sort--*/
+void cocktail_sort_list(listint_t **list);
+
 #endif
